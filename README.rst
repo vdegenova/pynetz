@@ -12,7 +12,15 @@ interface to work with.
 
 Installation
 ------------
-pip install pynetz
+
+From PyPi::
+
+    pip install pynetz
+
+
+Or from source::
+
+    python setup.py install
 
 
 Creating Your Own Neural Networks
@@ -20,7 +28,9 @@ Creating Your Own Neural Networks
 
 ::
 
-   n = NN([3, 100, 3])  # initialize a Neural Network with 3 inputs at the input, a hidden layer with 100 units, and an output layer with 3 units
+   import numpy as np
+   # initialize a Neural Network with 3 inputs at the input, a hidden layer with 100 units, and an output layer with 3 units
+   n = NN([3, 100, 3])
    vals = np.random.random((100, 3))
    X = np.split(vals, 100)  # splitting into multiple training examples
    Y = np.sin(x)  # training the network to learn sin(x) as a simple example
@@ -28,3 +38,12 @@ Creating Your Own Neural Networks
    epochs = 50  # max number of epochs
    gen_plots = False  # don't generate plots for training error
    n.train(epochs, X, Y, eta, gen_plots)
+
+
+Sampling Your Neural Network
+----------------------------
+
+::
+
+   print "Expected: ", np.sin(np.array([0.8, 0.9, 0.2]))
+   print "Sampled: ", n.feedforward(np.array([0.8, 0.9, 0.2]))
